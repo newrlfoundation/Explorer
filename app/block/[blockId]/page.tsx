@@ -32,13 +32,13 @@ async function page({ params: { blockId } }: PageProps) {
                     </li>
                     <li className="flex items-center">
                         <Link href={"/block"} className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-                            <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
                             Blocks
                         </Link>
                     </li>
                     <li aria-current="page">
                         <div className="flex items-center">
-                            <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
                             <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400"># {blockId}</span>
                         </div>
                     </li>
@@ -66,10 +66,10 @@ async function page({ params: { blockId } }: PageProps) {
                     <div>
                         Status : {block.status}
                     </div>
-                    <div>
+                    <div className='truncate'>
                         Creator Wallet : {block.creator_wallet}
                     </div>
-                    <div>
+                    <div className='truncate'>
                         Expected Miner : {block.expected_miner}
                     </div>
                     <div className="md:col-span-2 md:py-5">
@@ -93,7 +93,7 @@ async function page({ params: { blockId } }: PageProps) {
                                                     Timestamp : {moment(trans.transaction.timestamp).calendar()} <span className='ml-2 text-xs'>{moment(trans.transaction.timestamp).fromNow()}</span>
                                                 </div>
                                                 <div className='truncate'>
-                                                    Trans code : {trans.transaction.trans_code}
+                                                    Trans code : <Link href={`/transaction/${trans.transaction.trans_code}`} className="text-blue-600 underline">{trans.transaction.trans_code}</Link>
                                                 </div>
                                                 <div>
                                                     Type : {trans.transaction.type}
@@ -114,7 +114,7 @@ async function page({ params: { blockId } }: PageProps) {
                                                     Network Address : <strong>{trans.transaction.specific_data.network_address}</strong>
                                                 </div>
                                                 <div>
-                                                    Timestamp : {moment(trans.transaction.specific_data.broadcast_timestamp).calendar()} <span className='ml-2 text-xs'>{moment(trans.transaction.specific_data.broadcast_timestamp).fromNow()}</span>
+                                                    Broadcast Timestamp : {moment(trans.transaction.specific_data.broadcast_timestamp).calendar()} <span className='ml-2 text-xs'>{moment(trans.transaction.specific_data.broadcast_timestamp).fromNow()}</span>
                                                 </div>
                                                 <div>
                                                     Software Version : {trans.transaction.specific_data.software_version}
