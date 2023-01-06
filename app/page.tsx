@@ -126,24 +126,26 @@ async function main() {
           <p className="text-center font-semibold">Latest Transactions</p>
           {
             transactions.map((txn: any, index: number) => (
-              <div key={index} className="flex py-3 space-x-3 cursor-pointer border-indigo-500 hover:border-r-2">
-                <div>
-                  <p className="bg-rose-100 w-10 h-10 rounded-md flex items-center justify-center">
-                    TXN
-                  </p>
+              <Link key={index} href={`/transaction/${txn.transactionCode}`}>
+                <div key={index} className="flex py-3 space-x-3 cursor-pointer border-indigo-500 hover:border-r-2">
+                  <div>
+                    <p className="bg-rose-100 w-10 h-10 rounded-md flex items-center justify-center">
+                      TXN
+                    </p>
+                  </div>
+                  <div className="w-36 overflow-hidden">
+                    <p className="font-semibold truncate">{txn.transactionCode}</p>
+                    <p className="text-xs">{moment(txn.timestamp).calendar()}</p>
+                  </div>
+                  <div className="flex-grow truncate">
+                    <span className="text-xs">signer</span>: {txn.signer}
+                  </div>
+                  <div className="w-20 text-center">
+                    <p className="font-semibold text-xs"> <span className="text-xs font-normal">fee</span> {txn.fee}</p>
+                    <p className="text-xs">Type : {txn.type}</p>
+                  </div>
                 </div>
-                <div className="w-36 overflow-hidden">
-                  <p className="font-semibold truncate">{txn.transactionCode}</p>
-                  <p className="text-xs">{moment(txn.timestamp).calendar()}</p>
-                </div>
-                <div className="flex-grow truncate">
-                  <span className="text-xs">signer</span>: {txn.signer}
-                </div>
-                <div className="w-20 text-center">
-                  <p className="font-semibold text-xs"> <span className="text-xs font-normal">fee</span> {txn.fee}</p>
-                  <p className="text-xs">Type : {txn.type}</p>
-                </div>
-              </div>
+              </Link>
             ))
           }
         </div>
