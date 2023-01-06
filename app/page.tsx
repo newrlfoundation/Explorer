@@ -4,7 +4,7 @@ import Link from "next/link";
 import SearchButton from "../components/searchButton";
 
 async function getLastIndex() {
-  const res = await fetch('https://mainnetgw.newrl.net/get-last-block-index', { next: { revalidate: 10 } });
+  const res = await fetch('https://mainnetgw.newrl.net/get-last-block-index', { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -12,7 +12,7 @@ async function getLastIndex() {
 }
 
 async function getFullBlocks(blockValue: number) {
-  const res = await fetch(`https://mainnetgw.newrl.net/get-archived-blocks?start_index=${blockValue - 25}&end_index=${blockValue}`, { next: { revalidate: 10 } });
+  const res = await fetch(`https://mainnetgw.newrl.net/get-archived-blocks?start_index=${blockValue - 25}&end_index=${blockValue}`, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
