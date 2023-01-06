@@ -59,7 +59,7 @@ async function page() {
                         </li>
                         <li>
                             <div className="flex items-center">
-                                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
                                 Transactions
                             </div>
                         </li>
@@ -71,7 +71,7 @@ async function page() {
                 <p className="text-center font-semibold p-5">Latest Transactions</p>
                 {
                     transactions.map((txn: any, index: number) => (
-                        <Link key={index} href={`/transactions/${txn.transactionCode}`}>
+                        <Link key={index} href={`/transaction/${txn.transactionCode}`}>
                             <div key={index} className="flex py-3 space-x-3 cursor-pointer border-indigo-500 hover:border-r-2">
                                 <div>
                                     <p className="bg-rose-100 w-10 h-10 rounded-md flex items-center justify-center">

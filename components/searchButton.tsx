@@ -10,7 +10,7 @@ const SearchButton = () => {
         if (searchValue.startsWith('0x')) {
             redirect('/wallet/' + searchValue)
         } else if (isNaN(searchValue)) {
-            redirect('/transactions/' + searchValue)
+            redirect('/transaction/' + searchValue)
         } else {
             redirect('/block/' + searchValue)
         }
