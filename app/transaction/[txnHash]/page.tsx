@@ -88,27 +88,54 @@ async function page({ params: { txnHash } }: PageProps) {
                     <div>
                         Currency : {transaction.currency}
                     </div>
-                    <div>
+                    <div className='md:col-span-2'>
                         Fee : {transaction.fee}
                     </div>
-                    <div className='md:col-span-2'>
-                        Description : {transaction.descr}
-                    </div>
-                    <div className='truncate'>
-                        Wallet Address : <strong>{transaction.specific_data.wallet_address}</strong>
-                    </div>
-                    <div>
-                        Network Address : <strong>{transaction.specific_data.network_address}</strong>
-                    </div>
-                    <div>
-                        Broadcast Timestamp : {moment(transaction.specific_data.broadcast_timestamp).calendar()} <span className='ml-2 text-xs'>{moment(transaction.specific_data.broadcast_timestamp).fromNow()}</span>
-                    </div>
-                    <div>
-                        Software Version : {transaction.specific_data.software_version}
-                    </div>
-                    <div>
-                        Last Block Index : <Link href={`/block/${transaction.specific_data.last_block_index}`} className="text-blue-600 underline">{transaction.specific_data.last_block_index}</Link>
-                    </div>
+                    {transaction.type === 5 &&
+                        <>
+                            <div className='truncate'>
+                                From Wallet : <strong>{transaction.specific_data.wallet1}</strong>
+                                <div className="flex flex-row text-sm text-purple-900 font-extrabold">
+                                    <p className="mr-3">{transaction.specific_data.asset1_code} - {Number(transaction.specific_data.asset1_number) / 1000000}</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5" data-tooltip-target="tooltip-right" data-tooltip-placement="right">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                    </svg>
+
+                                    <div id="tooltip-right" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        {transaction.specific_data.asset1_number}
+                                        <div className="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className='truncate'>
+                                To Wallet : <strong>{transaction.specific_data.wallet2}</strong>
+                            </div>
+
+                        </>
+                    }
+                    {transaction.type !== 5 &&
+                        <>
+                            <div className='md:col-span-2'>
+                                Description : {transaction.descr}
+                            </div>
+                            <div className='truncate'>
+                                Wallet Address : <strong>{transaction.specific_data.wallet_address}</strong>
+                            </div>
+                            <div>
+                                Network Address : <strong>{transaction.specific_data.network_address}</strong>
+                            </div>
+                            <div>
+                                Broadcast Timestamp : {moment(transaction.specific_data.broadcast_timestamp).calendar()} <span className='ml-2 text-xs'>{moment(transaction.specific_data.broadcast_timestamp).fromNow()}</span>
+                            </div>
+                            <div>
+                                Software Version : {transaction.specific_data.software_version}
+                            </div>
+                            <div>
+                                Last Block Index : <Link href={`/block/${transaction.specific_data.last_block_index}`} className="text-blue-600 underline">{transaction.specific_data.last_block_index}</Link>
+                            </div>
+                        </>
+                    }
                     <div>
                         Is child Txn : {transaction.is_child_txn.toString()}
                     </div>
